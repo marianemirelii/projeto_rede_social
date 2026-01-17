@@ -12,6 +12,7 @@ public static class CommentMapper
             Id = comment.Id,
             PostId = comment.PostId,
             UserId = comment.UserId,
+            ImageUser = comment.User!.Image,
             UserName = comment.User!.Name,
             Content = comment.Content,
             CreatedAt = comment.CreatedAt

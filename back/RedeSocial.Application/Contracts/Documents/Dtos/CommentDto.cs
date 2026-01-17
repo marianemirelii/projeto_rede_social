@@ -7,6 +7,7 @@ public class CommentDto
     public int PostId { get; set; }
 
     public int UserId { get; set; }
+    public string? ImageUser { get; set; } = string.Empty;
     public string UserName { get; set; } = string.Empty;
 
     public string Content { get; set; } = string.Empty;
