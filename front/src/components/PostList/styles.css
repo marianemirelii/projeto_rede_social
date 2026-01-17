@@ -1,0 +1,16 @@
+.feed-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feed-vazio {
+  text-align: center;
+  margin-top: 40px;
+  color: #657786;
+  font-size: 14px;
+}

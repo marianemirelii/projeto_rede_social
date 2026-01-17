@@ -51,13 +51,3 @@ export const ComImagem: Story = {
     },
   },
 };
-
-export const PoucasInteracoes: Story = {
-  args: {
-    post: {
-      ...postMock,
-      likes: 0,
-      comments: 0,
-    },
-  },
-};
