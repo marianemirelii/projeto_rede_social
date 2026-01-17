@@ -12,6 +12,7 @@ public static class PostMapper
             Id = post.Id,
             UserId = post.UserId,
             UserName = post.User.Name,
+            ImageUser = post.User.Image,
             Content = post.Content,
             IsPublic = post.IsPublic,
             Image = post.Image,
