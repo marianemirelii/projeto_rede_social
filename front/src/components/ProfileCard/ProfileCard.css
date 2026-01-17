@@ -1,0 +1,75 @@
+.profile-card {
+  width: 100%;
+  max-width: 320px;
+  background: #000;
+  border: 1px solid #2f3336;
+  border-radius: 16px;
+  padding: 16px;
+  color: #e7e9ea;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.profile-avatar img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-avatar-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #1d9bf0;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-name {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.profile-nickname {
+  display: block;
+  font-size: 14px;
+  color: #71767b;
+  margin-bottom: 16px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.profile-stats div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-stats strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.profile-stats span {
+  font-size: 12px;
+  color: #71767b;
+}
