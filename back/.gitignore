@@ -1,0 +1,80 @@
+############################################
+# .NET / Visual Studio
+############################################
+
+# Build results
+bin/
+obj/
+
+# Rider / VS Code / Visual Studio
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+############################################
+# .NET Core
+############################################
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+############################################
+# Test results
+############################################
+TestResults/
+coverage/
+coverage.cobertura.xml
+
+############################################
+# NuGet
+############################################
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+############################################
+# SQLite / Local databases
+############################################
+*.db
+*.db-shm
+*.db-wal
+
+############################################
+# Environment files
+############################################
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+
+############################################
+# OS files
+############################################
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+############################################
+# Docker
+############################################
+docker-compose.override.yml
+
+############################################
+# Publish
+############################################
+publish/

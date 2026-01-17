@@ -1,0 +1,546 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Rede Social
+meta:
+  id: wrk_bb9275f0a61c420981d65d3835b36e1c
+  created: 1766687195797
+  modified: 1766687195797
+  description: ""
+collection:
+  - name: User
+    meta:
+      id: fld_4f61e8c19528489c82cb42c67a9a39c1
+      created: 1766687208367
+      modified: 1766687208367
+      sortKey: -1766687208367
+      description: ""
+    children:
+      - url: http://localhost:5257/api/User/login
+        name: Login
+        meta:
+          id: req_53363ac70ddc4376ade38bd91bbd6ab9
+          created: 1766687319928
+          modified: 1767043834115
+          isPrivate: false
+          description: ""
+          sortKey: -1766687513859.25
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "js@gmail.com",
+              "password": "12345"
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/User/register
+        name: Register
+        meta:
+          id: req_bf00103c02a1471eb36ce71d06e4a58f
+          created: 1766687578503
+          modified: 1766867681210
+          isPrivate: false
+          description: ""
+          sortKey: -1766687578503
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Mariane Mireli",
+              "email": "mari@gmail.com",
+              "password": "12345",
+              "birthDate": "2006-01-15",
+              "cep": "58808583",
+              "nickName": "Mireli"
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/User
+        name: Usuario
+        meta:
+          id: req_799d64a1d0b44b57bb193a0d562370ea
+          created: 1766861375225
+          modified: 1766861501066
+          isPrivate: false
+          description: ""
+          sortKey: -1766687449215.5
+        method: GET
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/User
+        name: Editar usuario
+        meta:
+          id: req_e12fb53e8f794733bbfe0e09dc90bfac
+          created: 1766861606712
+          modified: 1766861760536
+          isPrivate: false
+          description: ""
+          sortKey: -1766687384571.75
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nickname": "string",
+              "image": "string",
+              "password": "string"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/User/profile/3
+        name: Perfil de usuarios
+        meta:
+          id: req_81505de7121c47ed920eb507a83c8f5b
+          created: 1766867473182
+          modified: 1766867746071
+          isPrivate: false
+          description: ""
+          sortKey: -1766687416893.625
+        method: GET
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/User/search?search=
+        name: Pesquisar usuarios
+        meta:
+          id: req_941879e8fe584a219e0688bd0008a418
+          created: 1767017361167
+          modified: 1767017552750
+          isPrivate: false
+          description: ""
+          sortKey: -1766687400732.6875
+        method: GET
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Friends
+    meta:
+      id: fld_adec5f7bc4b94f82bbc6a1cd5975fb46
+      created: 1766687686419
+      modified: 1766687686419
+      sortKey: -1766687686419
+      description: ""
+    children:
+      - url: http://localhost:5257/api/Friend/add
+        name: Solicitar Amizade
+        meta:
+          id: req_f7abc0ecb7984616bf11a9d800e01e15
+          created: 1766687780028
+          modified: 1766690379267
+          isPrivate: false
+          description: ""
+          sortKey: -1766687780028
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "friendId": 2
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Friend/requests
+        name: Solicitações de Amizade
+        meta:
+          id: req_81d562e1e7194b43b83ded919c03275f
+          created: 1766688864253
+          modified: 1766695659104
+          isPrivate: false
+          description: ""
+          sortKey: -1766688864253
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Friend/all
+        name: Minhas Amizades
+        meta:
+          id: req_b7a408fd3aec4aa1bec16b157430c1aa
+          created: 1766695631443
+          modified: 1766695649257
+          isPrivate: false
+          description: ""
+          sortKey: -1766688322140.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Friend/accept
+        name: Responder Amizade
+        meta:
+          id: req_0d19a619273341c489573fc37e633951
+          created: 1766696131766
+          modified: 1766696200864
+          isPrivate: false
+          description: ""
+          sortKey: -1766687679265.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "friendId": 1,
+              "status": 2
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Posts
+    meta:
+      id: fld_121deeea118a4af0925cce164c13a34a
+      created: 1766787617885
+      modified: 1766787617885
+      sortKey: -1766787617885
+      description: ""
+    children:
+      - url: http://localhost:5257/api/Post
+        name: Criar post
+        meta:
+          id: req_25e059117fa34770936a8dfe53587f5d
+          created: 1766787640838
+          modified: 1767044877919
+          isPrivate: false
+          description: ""
+          sortKey: -1766787661157
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"content": "",
+              "isPublic": false
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Post/feed
+        name: Feed
+        meta:
+          id: req_66ab5b865c5c4f51bc26767e56ed9ee6
+          created: 1766787770621
+          modified: 1766790583772
+          isPrivate: false
+          description: ""
+          sortKey: -1766738262705
+        method: GET
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Post/2/comments
+        name: Criar commentario
+        meta:
+          id: req_5c2e6678839b48a193cc560817a7953b
+          created: 1766856151073
+          modified: 1766856288909
+          isPrivate: false
+          description: ""
+          sortKey: -1766762961931
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "content": "Boa tarde cara"
+            }
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+          - name: Content-Type
+            value: application/json
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Post/2/comments
+        name: Listar comentarios do post
+        meta:
+          id: req_34462902ad904bddb4831815fa596680
+          created: 1766856184508
+          modified: 1766861461670
+          isPrivate: false
+          description: ""
+          sortKey: -1766713563479
+        method: GET
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Like
+    meta:
+      id: fld_4b7c62058b1d43bd992bd8611505b0a2
+      created: 1766790141954
+      modified: 1766790141954
+      sortKey: -1766790141954
+      description: ""
+    children:
+      - url: http://localhost:5257/api/Like/2
+        name: Like post
+        meta:
+          id: req_841f2aa81fb243609a9d48ab2f3db742
+          created: 1766790159520
+          modified: 1766790224275
+          isPrivate: false
+          description: ""
+          sortKey: -1766790178622
+        method: POST
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5257/api/Like/2
+        name: Remover like post
+        meta:
+          id: req_05b69f62924b4e2c83e3ed8d3da18d40
+          created: 1767050409565
+          modified: 1767050414794
+          isPrivate: false
+          description: ""
+          sortKey: -1766788919889.5
+        method: DELETE
+        headers:
+          - name: accept
+            value: "*/*"
+          - name: Authorization
+            value: Bearer {% response 'body', 'req_53363ac70ddc4376ade38bd91bbd6ab9',
+              'b64::JC50b2tlbg==::46b', 'never', 60 %}
+            disabled: false
+        authentication:
+          type: none
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_660debea2a517bea074a086e039449a00636ce93
+    created: 1766687195803
+    modified: 1766687195803
+environments:
+  name: Base Environment
+  meta:
+    id: env_660debea2a517bea074a086e039449a00636ce93
+    created: 1766687195799
+    modified: 1766687195799
+    isPrivate: false
