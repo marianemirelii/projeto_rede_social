@@ -1,14 +1,12 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./pages/login/Login";
-import { PrivateRoute } from "./routes/PrivateRoute";
+import { Home } from "./pages/home/Home";
 
 import "./App.css";
 
-function Feed() {
-  return <h1>Feed</h1>;
-}
-
 function App() {
+  const token = localStorage.getItem("token");
+
   return (
     <BrowserRouter>
       <Routes>
@@ -16,11 +14,7 @@ function App() {
 
         <Route
           path="/"
-          element={
-            <PrivateRoute>
-              <Feed />
-            </PrivateRoute>
-          }
+          element={token ? <Home /> : <Navigate to="/login" />}
         />
       </Routes>
     </BrowserRouter>

@@ -45,7 +45,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.token;
 
-        // 🔑 salva token
         localStorage.setItem("token", action.payload.token);
       })
       .addCase(login.rejected, (state, action) => {

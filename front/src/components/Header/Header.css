@@ -16,14 +16,14 @@
 
 .header-nav {
   display: flex;
-  gap: 16px;
+  gap: 12px;
 }
 
 .nav-item {
   background: none;
   border: none;
   color: #e7e9ea;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   padding: 6px 12px;
   border-radius: 20px;
@@ -35,30 +35,45 @@
 
 .nav-item.active {
   font-weight: bold;
+  background-color: #181818;
 }
 
 .header-user {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: #e7e9ea;
   font-size: 14px;
 }
 
-.header-user img {
+.header-user img,
+.user-avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
   background-color: #1d9bf0;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-weight: bold;
+}
+
+.user-nick {
+  color: #8899a6;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
 }

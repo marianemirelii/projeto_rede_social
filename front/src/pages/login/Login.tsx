@@ -28,7 +28,6 @@ export function Login() {
       })
     );
 
-    // ✅ login com sucesso
     if (login.fulfilled.match(result)) {
       navigate("/", { replace: true });
     }
