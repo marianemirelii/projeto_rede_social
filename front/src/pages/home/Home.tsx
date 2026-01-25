@@ -1,36 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store";
+import { getLoggedUser } from "../../store/userSlice";
+import { logout } from "../../store/authSlice";
+
 import { Header } from "../../components/Header/Header";
-import type { User } from "../../types/User";
 import "./Home.css";
 
 type Section = "feed" | "profile" | "search" | "notifications";
 
-const userMock: User = {
-  id: 5,
-  name: "Luiz Alberto",
-  email: "luiz@gmail.com",
-  birthDate: "1982-01-15",
-  cep: "58808583",
-  image: null,
-  nickName: "Luiz.A",
-  postsCount: 0,
-  friendsCount: 0,
-};
-
 export function Home() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const user = useSelector((state: RootState) => state.user.data);
+  const userLoading = useSelector(
+    (state: RootState) => state.user.loading
+  );
+
   const [activeSection, setActiveSection] =
     useState<Section>("feed");
 
+  useEffect(() => {
+    if (!user) {
+      dispatch(getLoggedUser());
+    }
+  }, [dispatch, user]);
+
   function handleLogout() {
-    // depois: dispatch(logout())
+    dispatch(logout());
     localStorage.removeItem("token");
     window.location.href = "/login";
+  }
+
+  if (userLoading || !user) {
+    return <p style={{ padding: 16 }}>Carregando...</p>;
   }
 
   return (
     <div className="home-container">
       <Header
-        user={userMock}
+        user={user}
         activeSection={activeSection}
         onChangeSection={setActiveSection}
         onLogout={handleLogout}
