@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store";
 import { getLoggedUser } from "../../store/userSlice";
 import { logout } from "../../store/authSlice";
+import { PostList } from "../../components/PostList/PostList";
 
 import { Header } from "../../components/Header/Header";
 import "./Home.css";
+import { loadPosts } from "../../store/postsSlice";
 
 type Section = "feed" | "profile" | "search" | "notifications";
 
@@ -21,10 +23,12 @@ export function Home() {
     useState<Section>("feed");
 
   useEffect(() => {
-    if (!user) {
-      dispatch(getLoggedUser());
-    }
-  }, [dispatch, user]);
+  if (!user) {
+    dispatch(getLoggedUser());
+  } else {
+    dispatch(loadPosts());
+  }
+}, [dispatch, user]);
 
   function handleLogout() {
     dispatch(logout());
@@ -46,11 +50,7 @@ export function Home() {
       />
 
       <main className="home-content">
-        {activeSection === "feed" && (
-          <div className="placeholder">
-            Feed (PostList vem aqui)
-          </div>
-        )}
+        {activeSection === "feed" && <PostList />}
 
         {activeSection === "profile" && (
           <div className="placeholder">

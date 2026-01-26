@@ -1,19 +1,28 @@
-import type { Post } from "../../types/Post";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 import { PostCard } from "../PostCard/PostCard";
 import "./styles.css";
 
-interface PostListProps {
-  posts: Post[];
-}
+export function PostList() {
+  const { posts, loading, error } = useSelector(
+    (state: RootState) => state.posts
+  );
 
-export function PostList({ posts }: PostListProps) {
+  if (loading) {
+    return <p className="feed-vazio">Carregando feed...</p>;
+  }
+
+  if (error) {
+    return <p className="feed-vazio">{error}</p>;
+  }
+
   if (posts.length === 0) {
     return <p className="feed-vazio">Nenhum post encontrado</p>;
   }
 
   return (
     <section className="feed-container">
-      {posts.map((post) => (
+      {posts.map(post => (
         <PostCard key={post.id} post={post} />
       ))}
     </section>

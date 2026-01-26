@@ -2,7 +2,7 @@ export interface Post {
   id: number;
   userId: number;
   userName: string;
-  userImage: string;
+  imageUser: string | null;
   content: string;
   isPublic: boolean;
   image: string | null;

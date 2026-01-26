@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { likePost } from "../../store/postsSlice";
 import type { Post } from "../../types/Post";
 import "./styles.css";
 
@@ -7,19 +8,19 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const [likes, setLikes] = useState(post.likes);
+  const dispatch = useDispatch();
 
   function handleLike() {
-    setLikes((prev) => prev + 1);
+    dispatch(likePost(post.id));
   }
 
   return (
     <article className="post-card">
       <div className="post-avatar">
-        {post.userImage ? (
-          <img src={post.userImage} alt={post.userName} />
+        {post.imageUser ? (
+          <img src={post.imageUser} alt={post.userName} />
         ) : (
-          <div className="post-avatar-placeholder" />
+          <img src="https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png" alt="imagem padrao" />
         )}
       </div>
 
@@ -34,16 +35,12 @@ export function PostCard({ post }: PostCardProps) {
         <p className="post-content">{post.content}</p>
 
         {post.image && (
-          <img
-            className="post-image"
-            src={post.image}
-            alt="Imagem do post"
-          />
+          <img className="post-image" src={post.image} alt="Imagem do post" />
         )}
 
         <footer className="post-actions">
           <button className="post-action" onClick={handleLike}>
-            ❤️ {likes}
+            ❤️ {post.likes}
           </button>
 
           <span className="post-action">💬 {post.comments}</span>
