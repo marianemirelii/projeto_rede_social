@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { Post } from "../types/Post";
-import { fetchPosts } from "../services/postService";
+import { fetchPosts, createPost } from "../services/postService";
 
 interface PostsState {
   posts: Post[];
@@ -26,6 +26,18 @@ export const loadPosts = createAsyncThunk<
   }
 });
 
+export const addPost = createAsyncThunk<
+  Post,
+  { content: string; isPublic: boolean; image: string | null },
+  { rejectValue: string }
+>("posts/create", async (data, { rejectWithValue }) => {
+  try {
+    return await createPost(data);
+  } catch {
+    return rejectWithValue("Erro ao criar post");
+  }
+});
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -48,7 +60,10 @@ const postsSlice = createSlice({
       .addCase(loadPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload ?? "Erro inesperado";
-      });
+      })
+      .addCase(addPost.fulfilled, (state, action) => {
+        state.posts.unshift(action.payload);
+    });
   },
 });
 

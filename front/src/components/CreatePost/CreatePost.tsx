@@ -1,31 +1,51 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../store";
+import { addPost } from "../../store/postsSlice";
 import "./CreatePost.css";
 
-interface CreatePostProps {
-  aoPublicar?: (conteudo: string, isPublic: boolean) => void;
-}
+export function CreatePost() {
+  const dispatch = useDispatch<AppDispatch>();
+  const loading = useSelector(
+    (state: RootState) => state.posts.loading
+  );
 
-export function CreatePost({ aoPublicar }: CreatePostProps) {
-  const [conteudo, setConteudo] = useState("");
+  const [content, setContent] = useState("");
   const [isPublic, setIsPublic] = useState(true);
+  const [imageUrl, setImageUrl] = useState("");
 
-  function handlePublicar() {
-    if (!conteudo.trim()) return;
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
 
-    aoPublicar?.(conteudo, isPublic);
+    if (!content.trim()) return;
 
-    // mock: limpar formulário após "publicar"
-    setConteudo("");
-    setIsPublic(true);
+    dispatch(
+      addPost({
+        content,
+        isPublic,
+        image: imageUrl || null,
+      })
+    );
+
+    setContent("");
+    setImageUrl("");
   }
 
   return (
-    <section className="create-post">
+    <form className="create-post" onSubmit={handleSubmit}>
       <textarea
-        className="create-post-textarea"
-        placeholder="O que você está pensando?"
-        value={conteudo}
-        onChange={(e) => setConteudo(e.target.value)}
+        placeholder="O que está acontecendo?"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        maxLength={280}
+      />
+
+      <input
+        type="url"
+        placeholder="URL da imagem (opcional)"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
+        className="image-url-input"
       />
 
       <div className="create-post-footer">
@@ -33,19 +53,15 @@ export function CreatePost({ aoPublicar }: CreatePostProps) {
           <input
             type="checkbox"
             checked={isPublic}
-            onChange={() => setIsPublic((prev) => !prev)}
+            onChange={() => setIsPublic(!isPublic)}
           />
           Público
         </label>
 
-        <button
-          className="create-post-button"
-          onClick={handlePublicar}
-          disabled={!conteudo.trim()}
-        >
-          Publicar
+        <button disabled={loading || !content.trim()}>
+          {loading ? "Publicando..." : "Postar"}
         </button>
       </div>
-    </section>
+    </form>
   );
 }

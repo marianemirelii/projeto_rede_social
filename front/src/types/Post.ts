@@ -10,3 +10,9 @@ export interface Post {
   likes: number;
   comments: number;
 }
+
+export interface CreatePostRequest {
+  content: string;
+  isPublic: boolean;
+  image: string | null;
+}

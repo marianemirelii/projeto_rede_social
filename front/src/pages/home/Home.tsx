@@ -4,6 +4,7 @@ import type { AppDispatch, RootState } from "../../store";
 import { getLoggedUser } from "../../store/userSlice";
 import { logout } from "../../store/authSlice";
 import { PostList } from "../../components/PostList/PostList";
+import { CreatePost } from "../../components/CreatePost/CreatePost";
 
 import { Header } from "../../components/Header/Header";
 import "./Home.css";
@@ -50,7 +51,12 @@ export function Home() {
       />
 
       <main className="home-content">
-        {activeSection === "feed" && <PostList />}
+        {activeSection === "feed" && (
+        <>
+            <CreatePost />
+            <PostList />
+        </>
+        )}
 
         {activeSection === "profile" && (
           <div className="placeholder">
