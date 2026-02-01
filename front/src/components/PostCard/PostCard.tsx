@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { likePost } from "../../store/postsSlice";
+import type { AppDispatch } from "../../store";
+import { toggleLike } from "../../store/postsSlice";
 import type { Post } from "../../types/Post";
 import "./styles.css";
 
@@ -8,20 +9,27 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   function handleLike() {
-    dispatch(likePost(post.id));
+    dispatch(
+      toggleLike({
+        postId: post.id,
+        liked: post.likedByMe,
+      })
+    );
   }
 
   return (
     <article className="post-card">
       <div className="post-avatar">
-        {post.imageUser ? (
-          <img src={post.imageUser} alt={post.userName} />
-        ) : (
-          <img src="https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png" alt="imagem padrao" />
-        )}
+        <img
+          src={
+            post.imageUser ??
+            "https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png"
+          }
+          alt={post.userName}
+        />
       </div>
 
       <div className="post-body">
@@ -35,11 +43,20 @@ export function PostCard({ post }: PostCardProps) {
         <p className="post-content">{post.content}</p>
 
         {post.image && (
-          <img className="post-image" src={post.image} alt="Imagem do post" />
+          <img
+            className="post-image"
+            src={post.image}
+            alt="Imagem do post"
+          />
         )}
 
         <footer className="post-actions">
-          <button className="post-action" onClick={handleLike}>
+          <button
+            className={`post-action like ${
+              post.likedByMe ? "liked" : ""
+            }`}
+            onClick={handleLike}
+          >
             ❤️ {post.likes}
           </button>
 

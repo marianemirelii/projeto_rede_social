@@ -9,6 +9,7 @@ export interface Post {
   createdAt: string;
   likes: number;
   comments: number;
+  likedByMe: boolean;
 }
 
 export interface CreatePostRequest {
