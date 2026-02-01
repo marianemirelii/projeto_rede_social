@@ -6,9 +6,10 @@ import "./styles.css";
 
 interface PostCardProps {
   post: Post;
+  onOpenComments: (postId: number) => void;
 }
 
-export function PostCard({ post }: PostCardProps) {
+export function PostCard({ post, onOpenComments }: PostCardProps) {
   const dispatch = useDispatch<AppDispatch>();
 
   function handleLike() {
@@ -43,11 +44,7 @@ export function PostCard({ post }: PostCardProps) {
         <p className="post-content">{post.content}</p>
 
         {post.image && (
-          <img
-            className="post-image"
-            src={post.image}
-            alt="Imagem do post"
-          />
+          <img className="post-image" src={post.image} />
         )}
 
         <footer className="post-actions">
@@ -60,9 +57,15 @@ export function PostCard({ post }: PostCardProps) {
             ❤️ {post.likes}
           </button>
 
-          <span className="post-action">💬 {post.comments}</span>
+          <button
+            className="post-action"
+            onClick={() => onOpenComments(post.id)}
+          >
+            💬 {post.comments}
+          </button>
         </footer>
       </div>
     </article>
   );
 }
+

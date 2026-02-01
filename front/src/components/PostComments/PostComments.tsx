@@ -1,44 +1,72 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Comment } from "../../types/Comment";
+import { fetchComments, createComment } from "../../services/commentService";
 import "./PostComments.css";
 
 interface PostCommentsProps {
-  comments: Comment[];
+  postId: number;
 }
 
-export function PostComments({ comments }: PostCommentsProps) {
-  const [commentList, setCommentList] = useState<Comment[]>(comments);
+export function PostComments({ postId }: PostCommentsProps) {
+  const [commentList, setCommentList] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleAddComment() {
+  useEffect(() => {
+    loadComments();
+  }, [postId]);
+
+  async function loadComments() {
+    try {
+      setLoading(true);
+      const data = await fetchComments(postId);
+      setCommentList(data);
+    } catch (error) {
+      console.error("Erro ao buscar comentários");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleAddComment() {
     if (!newComment.trim()) return;
 
-    const comment: Comment = {
-      id: Date.now(),
-      postId: comments[0]?.postId ?? 0,
-      userId: 1,
-      userName: "Você",
-      ImageUser: null,
-      content: newComment,
-      createdAt: new Date().toISOString(),
-    };
-
-    setCommentList((prev) => [...prev, comment]);
-    setNewComment("");
+    try {
+      await createComment(postId, newComment);
+      setNewComment("");
+      loadComments();
+    } catch {
+      console.error("Erro ao comentar");
+    }
   }
 
   return (
     <section className="post-comments">
+      {loading && <p style={{ color: "#71767b" }}>Carregando comentários...</p>}
+
       <ul className="comment-list">
         {commentList.map((comment) => (
           <li key={comment.id} className="comment-item">
-            <div className="comment-header">
-              <strong>{comment.userName}</strong>
-              <span className="comment-date">
-                {new Date(comment.createdAt).toLocaleString("pt-BR")}
-              </span>
+            <div className="comment-avatar">
+              <img
+                src={
+                  comment.imageUser ??
+                  "https://voxnews.com.br/wp-content/uploads/2017/04/unnamed.png"
+                }
+                alt={comment.userName}
+              />
             </div>
-            <p>{comment.content}</p>
+
+            <div className="comment-body">
+              <div className="comment-header">
+                <strong>{comment.userName}</strong>
+                <span className="comment-date">
+                  {new Date(comment.createdAt).toLocaleString("pt-BR")}
+                </span>
+              </div>
+
+              <p>{comment.content}</p>
+            </div>
           </li>
         ))}
       </ul>

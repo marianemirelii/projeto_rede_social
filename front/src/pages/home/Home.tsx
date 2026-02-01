@@ -5,10 +5,10 @@ import { getLoggedUser } from "../../store/userSlice";
 import { logout } from "../../store/authSlice";
 import { PostList } from "../../components/PostList/PostList";
 import { CreatePost } from "../../components/CreatePost/CreatePost";
-
 import { Header } from "../../components/Header/Header";
 import "./Home.css";
 import { loadPosts } from "../../store/postsSlice";
+import { PostComments } from "../../components/PostComments/PostComments";
 
 type Section = "feed" | "profile" | "search" | "notifications";
 
@@ -23,13 +23,16 @@ export function Home() {
   const [activeSection, setActiveSection] =
     useState<Section>("feed");
 
+  const [selectedPostId, setSelectedPostId] =
+    useState<number | null>(null);
+
   useEffect(() => {
-  if (!user) {
-    dispatch(getLoggedUser());
-  } else {
-    dispatch(loadPosts());
-  }
-}, [dispatch, user]);
+    if (!user) {
+      dispatch(getLoggedUser());
+    } else {
+      dispatch(loadPosts());
+    }
+  }, [dispatch, user]);
 
   function handleLogout() {
     dispatch(logout());
@@ -52,22 +55,37 @@ export function Home() {
 
       <main className="home-content">
         {activeSection === "feed" && (
-        <>
-            <CreatePost />
-            <PostList />
-        </>
+          <>
+            {selectedPostId === null ? (
+              <>
+                <CreatePost />
+                <PostList
+                  onOpenComments={(postId) =>
+                    setSelectedPostId(postId)
+                  }
+                />
+              </>
+            ) : (
+              <>
+                <button
+                  className="btn-back"
+                  onClick={() => setSelectedPostId(null)}
+                >
+                  ← Voltar para o feed
+                </button>
+
+                <PostComments postId={selectedPostId} />
+              </>
+            )}
+          </>
         )}
 
         {activeSection === "profile" && (
-          <div className="placeholder">
-            Perfil do usuário
-          </div>
+          <div className="placeholder">Perfil do usuário</div>
         )}
 
         {activeSection === "search" && (
-          <div className="placeholder">
-            Buscar usuários
-          </div>
+          <div className="placeholder">Buscar usuários</div>
         )}
 
         {activeSection === "notifications" && (

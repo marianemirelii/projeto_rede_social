@@ -3,7 +3,11 @@ import type { RootState } from "../../store";
 import { PostCard } from "../PostCard/PostCard";
 import "./styles.css";
 
-export function PostList() {
+interface PostListProps {
+  onOpenComments: (postId: number) => void;
+}
+
+export function PostList({ onOpenComments }: PostListProps) {
   const { posts, loading, error } = useSelector(
     (state: RootState) => state.posts
   );
@@ -23,7 +27,11 @@ export function PostList() {
   return (
     <section className="feed-container">
       {posts.map(post => (
-        <PostCard key={post.id} post={post} />
+        <PostCard
+          key={post.id}
+          post={post}
+          onOpenComments={onOpenComments}
+        />
       ))}
     </section>
   );
