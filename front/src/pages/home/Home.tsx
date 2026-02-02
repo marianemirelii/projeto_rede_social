@@ -9,6 +9,7 @@ import { Header } from "../../components/Header/Header";
 import "./Home.css";
 import { loadPosts } from "../../store/postsSlice";
 import { PostComments } from "../../components/PostComments/PostComments";
+import { Profile } from "../../components/Profile/Profile";
 
 type Section = "feed" | "profile" | "search" | "notifications";
 
@@ -80,9 +81,7 @@ export function Home() {
           </>
         )}
 
-        {activeSection === "profile" && (
-          <div className="placeholder">Perfil do usuário</div>
-        )}
+        {activeSection === "profile" && <Profile />}
 
         {activeSection === "search" && (
           <div className="placeholder">Buscar usuários</div>

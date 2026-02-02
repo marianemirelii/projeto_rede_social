@@ -13,6 +13,7 @@ public static class FriendMapper
             IdFriend = friend.FriendUserId,
             FriendName = friend.FriendUser!.Name,
             FriendEmail = friend.FriendUser.Email,
+            ImageUrl = friend.FriendUser.Image,
             Status = friend.Status.ToString()
         };
     }
@@ -24,6 +25,7 @@ public static class FriendMapper
             IdFriend = friend.UserId,
             FriendName = friend.User!.Name,
             FriendEmail = friend.User.Email,
+            ImageUrl = friend.User?.Image,
             Status = friend.Status.ToString()
         };
     }
