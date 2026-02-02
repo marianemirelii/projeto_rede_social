@@ -10,6 +10,7 @@ import "./Home.css";
 import { loadPosts } from "../../store/postsSlice";
 import { PostComments } from "../../components/PostComments/PostComments";
 import { Profile } from "../../components/Profile/Profile";
+import { FriendRequests } from "../../components/FriendRequests/FriendRequests";
 
 type Section = "feed" | "profile" | "search" | "notifications";
 
@@ -87,11 +88,7 @@ export function Home() {
           <div className="placeholder">Buscar usuários</div>
         )}
 
-        {activeSection === "notifications" && (
-          <div className="placeholder">
-            Notificações / solicitações
-          </div>
-        )}
+        {activeSection === "notifications" && <FriendRequests />}
       </main>
     </div>
   );

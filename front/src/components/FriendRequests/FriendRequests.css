@@ -1,0 +1,72 @@
+.requests-container {
+  padding: 16px;
+}
+
+.requests-empty {
+  padding: 16px;
+  color: #71767b;
+  text-align: center;
+}
+
+.request-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #2f3336;
+}
+
+.request-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.request-info {
+  flex: 1;
+}
+
+.request-info strong {
+  display: block;
+  color: #e7e9ea;
+  font-size: 14px;
+}
+
+.request-info span {
+  font-size: 12px;
+  color: #71767b;
+}
+
+.request-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.request-actions button {
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.request-actions .accept {
+  background-color: #1d9bf0;
+  color: #fff;
+}
+
+.request-actions .accept:hover {
+  background-color: #1a8cd8;
+}
+
+.request-actions .reject {
+  background-color: transparent;
+  border: 1px solid #2f3336;
+  color: #f4212e;
+}
+
+.request-actions .reject:hover {
+  background-color: rgba(244, 33, 46, 0.1);
+}
