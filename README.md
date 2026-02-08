@@ -25,7 +25,7 @@ A aplicação é desenvolvida em com **.NET**, **REACT** e **SQLite**
 ```bash
 git clone https://github.com/wendersondh/projeto_rede_social.git  
 
-cd MeLevaAi
+cd projeto_rede_social
 ```
 
 ---
